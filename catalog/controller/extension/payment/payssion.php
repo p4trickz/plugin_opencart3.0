@@ -40,7 +40,7 @@ class ControllerExtensionPaymentPayssion extends Controller {
 
 		$data['api_sig'] = $this->generateSignature($data, $this->config->get('payssion_secretkey'));
 		
-		return $this->load->view('extension/payment/payssion.tpl', $data);
+		return $this->load->view('extension/payment/payssion', $data);
 	}
 	
 	private function generateSignature(&$req, $secretKey) {

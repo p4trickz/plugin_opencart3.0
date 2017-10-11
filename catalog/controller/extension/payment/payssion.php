@@ -8,7 +8,7 @@ class ControllerExtensionPaymentPayssion extends Controller {
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
-		if (!$this->config->get('payssion_test')) {
+		if (!$this->config->get('payment_payssion_test')) {
 			$data['action'] = 'https://www.payssion.com/payment/create.html';
 		} else {
 			$data['action'] = 'http://sandbox.payssion.com/payment/create.html';
@@ -16,7 +16,7 @@ class ControllerExtensionPaymentPayssion extends Controller {
 
 		$data['source'] = 'opencart';
 		$data['pm_id'] = $this->pm_id;
-		$data['api_key'] = $this->config->get('payssion_apikey');
+		$data['api_key'] = $this->config->get('payment_payssion_apikey');
 		$data['track_id'] = $order_info['order_id'];
 		$data['amount'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false);
 		$data['currency'] = $order_info['currency_code'];
@@ -38,7 +38,7 @@ class ControllerExtensionPaymentPayssion extends Controller {
 		$data['success_url'] = $this->url->link('checkout/success', '', true);
 		$data['return_url'] = $this->url->link('checkout/checkout', '', true);
 
-		$data['api_sig'] = $this->generateSignature($data, $this->config->get('payssion_secretkey'));
+		$data['api_sig'] = $this->generateSignature($data, $this->config->get('payment_payssion_secretkey'));
 		
 		return $this->load->view('extension/payment/payssion', $data);
 	}
@@ -93,14 +93,14 @@ class ControllerExtensionPaymentPayssion extends Controller {
 				
 			
 			$status_list = array(
-					'completed' => $this->config->get('payssion_order_status_id'),
-					'pending' => $this->config->get('payssion_pending_status_id'),
-					'expired' => $this->config->get('payssion_expired_status_id'),
-					'cancelled_by_user' => $this->config->get('payssion_canceled_status_id'),
-					'cancelled' => $this->config->get('payssion_canceled_status_id'),
-					'rejected_by_bank' => $this->config->get('payssion_canceled_status_id'),
-					'failed' => $this->config->get('payssion_failed_status_id'),
-					'error' => $this->config->get('payssion_failed_status_id')
+					'completed' => $this->config->get('payment_payssion_order_status_id'),
+					'pending' => $this->config->get('payment_payssion_pending_status_id'),
+					'expired' => $this->config->get('payment_payssion_expired_status_id'),
+					'cancelled_by_user' => $this->config->get('payment_payssion_canceled_status_id'),
+					'cancelled' => $this->config->get('payment_payssion_canceled_status_id'),
+					'rejected_by_bank' => $this->config->get('payment_payssion_canceled_status_id'),
+					'failed' => $this->config->get('payment_payssion_failed_status_id'),
+					'error' => $this->config->get('payment_payssion_failed_status_id')
 			);
 				
 			$this->model_checkout_order->addOrderHistory($track_id, $status_list[$state], $message);
@@ -114,8 +114,8 @@ class ControllerExtensionPaymentPayssion extends Controller {
 	}
 	
 	public function isValidNotify() {
-		$apiKey = $this->config->get('payssion_apikey');;
-		$secretKey = $this->config->get('payssion_secretkey');
+		$apiKey = $this->config->get('payment_payssion_apikey');;
+		$secretKey = $this->config->get('payment_payssion_secretkey');
 	
 		// Assign payment notification values to local variables
 		$pm_id = $this->request->post['pm_id'];

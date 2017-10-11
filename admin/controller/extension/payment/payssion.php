@@ -21,7 +21,7 @@ class ControllerExtensionPaymentPayssion extends Controller {
 		$this->load->model('setting/setting');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
-			$this->model_setting_setting->editSetting($id, $this->request->post);
+			$this->model_setting_setting->editSetting('payment_' . $id, $this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
 
@@ -94,71 +94,71 @@ class ControllerExtensionPaymentPayssion extends Controller {
 
 		$data['cancel'] = $this->url->link('extension/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', 'SSL');
 
-		if (isset($this->request->post['payssion_apikey'])) {
-			$data['payssion_apikey'] = $this->request->post['payssion_apikey'];
+		if (isset($this->request->post['payment_payssion_apikey'])) {
+			$data['payment_payssion_apikey'] = $this->request->post['payment_payssion_apikey'];
 		} else {
-			$data['payssion_apikey'] = $this->config->get('payssion_apikey');
+			$data['payment_payssion_apikey'] = $this->config->get('payment_payssion_apikey');
 		}
 
-		if (isset($this->request->post['payssion_secretkey'])) {
-			$data['payssion_secretkey'] = $this->request->post['payssion_secretkey'];
+		if (isset($this->request->post['payment_payssion_secretkey'])) {
+			$data['payment_payssion_secretkey'] = $this->request->post['payment_payssion_secretkey'];
 		} else {
-			$data['payssion_secretkey'] = $this->config->get('payssion_secretkey');
+			$data['payment_payssion_secretkey'] = $this->config->get('payment_payssion_secretkey');
 		}
 
-		if (isset($this->request->post['payssion_test'])) {
-			$data['payssion_test'] = $this->request->post['payssion_test'];
+		if (isset($this->request->post['payment_payssion_test'])) {
+			$data['payment_payssion_test'] = $this->request->post['payment_payssion_test'];
 		} else {
-			$data['payssion_test'] = $this->config->get('payssion_test');
+			$data['payment_payssion_test'] = $this->config->get('payment_payssion_test');
 		}
 
-		if (isset($this->request->post['payssion_total'])) {
-			$data['payssion_total'] = $this->request->post['payssion_total'];
+		if (isset($this->request->post['payment_payssion_total'])) {
+			$data['payment_payssion_total'] = $this->request->post['payment_payssion_total'];
 		} else {
-			$data['payssion_total'] = $this->config->get('payssion_total');
+			$data['payment_payssion_total'] = $this->config->get('payment_payssion_total');
 		}
 
-		if (isset($this->request->post['payssion_order_status_id'])) {
-			$data['payssion_order_status_id'] = $this->request->post['payssion_order_status_id'];
+		if (isset($this->request->post['payment_payssion_order_status_id'])) {
+			$data['payment_payssion_order_status_id'] = $this->request->post['payment_payssion_order_status_id'];
 		} else {
-			$data['payssion_order_status_id'] = $this->config->get('payssion_order_status_id');
+			$data['payment_payssion_order_status_id'] = $this->config->get('payment_payssion_order_status_id');
 		}
 		
-		if (isset($this->request->post['payssion_pending_status_id'])) {
-			$data['payssion_pending_status_id'] = $this->request->post['payssion_pending_status_id'];
+		if (isset($this->request->post['payment_payssion_pending_status_id'])) {
+			$data['payment_payssion_pending_status_id'] = $this->request->post['payment_payssion_pending_status_id'];
 		} else {
-			$data['payssion_pending_status_id'] = $this->config->get('payssion_pending_status_id');
+			$data['payment_payssion_pending_status_id'] = $this->config->get('payment_payssion_pending_status_id');
 		}
 		
-		if (isset($this->request->post['payssion_canceled_status_id'])) {
-			$data['payssion_canceled_status_id'] = $this->request->post['payssion_canceled_status_id'];
+		if (isset($this->request->post['payment_payssion_canceled_status_id'])) {
+			$data['payment_payssion_canceled_status_id'] = $this->request->post['payment_payssion_canceled_status_id'];
 		} else {
-			$data['payssion_canceled_status_id'] = $this->config->get('payssion_canceled_status_id');
+			$data['payment_payssion_canceled_status_id'] = $this->config->get('payment_payssion_canceled_status_id');
 		}
 		
-		if (isset($this->request->post['payssion_expired_status_id'])) {
-			$data['payssion_expired_status_id'] = $this->request->post['payssion_expired_status_id'];
+		if (isset($this->request->post['payment_payssion_expired_status_id'])) {
+			$data['payment_payssion_expired_status_id'] = $this->request->post['payment_payssion_expired_status_id'];
 		} else {
-			$data['payssion_expired_status_id'] = $this->config->get('payssion_expired_status_id');
+			$data['payment_payssion_expired_status_id'] = $this->config->get('payment_payssion_expired_status_id');
 		}
 		
-		if (isset($this->request->post['payssion_failed_status_id'])) {
-			$data['payssion_failed_status_id'] = $this->request->post['payssion_failed_status_id'];
+		if (isset($this->request->post['payment_payssion_failed_status_id'])) {
+			$data['payment_payssion_failed_status_id'] = $this->request->post['payment_payssion_failed_status_id'];
 		} else {
-			$data['payssion_failed_status_id'] = $this->config->get('payssion_failed_status_id');
+			$data['payment_payssion_failed_status_id'] = $this->config->get('payment_payssion_failed_status_id');
 		}
 		
-		if (isset($this->request->post['payssion_chargeback_status_id'])) {
-			$data['payssion_chargeback_status_id'] = $this->request->post['payssion_chargeback_status_id'];
+		if (isset($this->request->post['payment_payssion_chargeback_status_id'])) {
+			$data['payment_payssion_chargeback_status_id'] = $this->request->post['payment_payssion_chargeback_status_id'];
 		} else {
-			$data['payssion_chargeback_status_id'] = $this->config->get('payssion_chargeback_status_id');
+			$data['payment_payssion_chargeback_status_id'] = $this->config->get('payment_payssion_chargeback_status_id');
 		}
 
 		$this->load->model('localisation/order_status');
 
 		$data['order_statuses'] = $this->model_localisation_order_status->getOrderStatuses();
 
-		$geo_zone_id = $id . '_geo_zone_id';
+		$geo_zone_id = 'payment_' . $id . '_geo_zone_id';
 		if (isset($this->request->post[$geo_zone_id])) {
 			$data[$geo_zone_id] = $this->request->post[$geo_zone_id];
 		} else {
@@ -169,14 +169,14 @@ class ControllerExtensionPaymentPayssion extends Controller {
 
 		$data['geo_zones'] = $this->model_localisation_geo_zone->getGeoZones();
 
-		$pm_status = $id . '_status';
+		$pm_status = 'payment_' . $id . '_status';
 		if (isset($this->request->post[$pm_status])) {
 			$data[$pm_status] = $this->request->post[$pm_status];
 		} else {
 			$data[$pm_status] = $this->config->get($pm_status);
 		}
 
-		$pm_sortorder = $id . '_sort_order';
+		$pm_sortorder = 'payment_' . $id . '_sort_order';
 		if (isset($this->request->post[$pm_sortorder])) {
 			$data[$pm_sortorder] = $this->request->post[$pm_sortorder];
 		} else {
@@ -196,11 +196,11 @@ class ControllerExtensionPaymentPayssion extends Controller {
 			$this->error['warning'] = $this->language->get('error_permission');
 		}
 
-		if (isset($this->request->post['payssion_apikey']) && !$this->request->post['payssion_apikey']) {
+		if (isset($this->request->post['payment_payssion_apikey']) && !$this->request->post['payment_payssion_apikey']) {
 			$this->error['apikey'] = $this->language->get('error_apikey');
 		}
 
-		if (isset($this->request->post['payssion_secretkey']) && !$this->request->post['payssion_secretkey']) {
+		if (isset($this->request->post['payment_payssion_secretkey']) && !$this->request->post['payment_payssion_secretkey']) {
 			$this->error['secretkey'] = $this->language->get('error_secretkey');
 		}
 

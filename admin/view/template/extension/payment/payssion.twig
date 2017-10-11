@@ -28,7 +28,7 @@
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-merchant">{{ entry_apikey }}</label>
             <div class="col-sm-10">
-              <input type="text" name="payssion_apikey" value="{{ payssion_apikey }}" placeholder="{{ entry_apikey }}" id="input-merchant" class="form-control" />
+              <input type="text" name="payment_payssion_apikey" value="{{ payment_payssion_apikey }}" placeholder="{{ entry_apikey }}" id="input-merchant" class="form-control" />
               {% if error_apikey %}
               <div class="text-danger">{{ error_apikey }}</div>
               {% endif %}
@@ -37,7 +37,7 @@
           <div class="form-group required">
             <label class="col-sm-2 control-label" for="input-password">{{ entry_secretkey }}</label>
             <div class="col-sm-10">
-              <input type="text" name="payssion_secretkey" value="{{ payssion_secretkey }}" placeholder="{{ entry_secretkey }}" id="input-password" class="form-control" />
+              <input type="text" name="payment_payssion_secretkey" value="{{ payment_payssion_secretkey }}" placeholder="{{ entry_secretkey }}" id="input-password" class="form-control" />
               {% if error_secretkey %}
               <div class="text-danger">{{ error_secretkey }}</div>
               {% endif %}
@@ -46,13 +46,13 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-test">{{ entry_test }}</label>
             <div class="col-sm-10">
-              <select name="payssion_test" id="input-test" class="form-control">
-                {% if payssion_test == 0 %}
+              <select name="payment_payssion_test" id="input-test" class="form-control">
+                {% if payment_payssion_test == 0 %}
                 <option value="0" selected="selected">{{ text_testmode_off }}</option>
                 {% else %}
                 <option value="0">{{ text_testmode_off }}</option>
                 {% endif %}
-                {% if payssion_test == 100 %}
+                {% if payment_payssion_test == 100 %}
                 <option value="100" selected="selected">{{ text_testmode_on }}</option>
                 {% else %}
                 <option value="100">{{ text_testmode_on }}</option>
@@ -63,7 +63,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-order-status">{{ entry_order_status }}</label>
             <div class="col-sm-10">
-              <select name="payssion_order_status_id" id="input-order-status" class="form-control">
+              <select name="payment_payssion_order_status_id" id="input-order-status" class="form-control">
                 {% for order_status in order_statuses %}
                 {% if order_status['order_status_id'] == payssion_order_status_id %}
                 <option value="{{ order_status['order_status_id'] }}" selected="selected">{{ order_status['name'] }}</option>
@@ -77,7 +77,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-pending-status">{{ entry_pending_status }}</label>
             <div class="col-sm-10">
-              <select name="payssion_pending_status_id" id="input-pending-status" class="form-control">
+              <select name="payment_payssion_pending_status_id" id="input-pending-status" class="form-control">
                 {% for order_status in order_statuses %}
                 {% if order_status['order_status_id'] == payssion_pending_status_id %}
                 <option value="{{ order_status['order_status_id'] }}" selected="selected">{{ order_status['name'] }}</option>
@@ -91,7 +91,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-expired-status">{{ entry_expired_status }}</label>
             <div class="col-sm-10">
-              <select name="payssion_expired_status_id" id="input-expired-status" class="form-control">
+              <select name="payment_payssion_expired_status_id" id="input-expired-status" class="form-control">
                 {% for order_status in order_statuses %}
                 {% if order_status['order_status_id'] == payssion_expired_status_id %}
                 <option value="{{ order_status['order_status_id'] }}" selected="selected">{{ order_status['name'] }}</option>
@@ -105,7 +105,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-canceled-status">{{ entry_canceled_status }}</label>
             <div class="col-sm-10">
-              <select name="payssion_canceled_status_id" id="input-canceled-status" class="form-control">
+              <select name="payment_payssion_canceled_status_id" id="input-canceled-status" class="form-control">
                 {% for order_status in order_statuses %}
                 {% if order_status['order_status_id'] == payssion_canceled_status_id %}
                 <option value="{{ order_status['order_status_id'] }}" selected="selected">{{ order_status['name'] }}</option>
@@ -119,7 +119,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-failed-status">{{ entry_failed_status }}</label>
             <div class="col-sm-10">
-              <select name="payssion_failed_status_id" id="input-failed-status" class="form-control">
+              <select name="payment_payssion_failed_status_id" id="input-failed-status" class="form-control">
                 {% for order_status in order_statuses %}
                 {% if order_status['order_status_id'] == payssion_failed_status_id %}
                 <option value="{{ order_status['order_status_id'] }}" selected="selected">{{ order_status['name'] }}</option>
@@ -133,7 +133,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-chargeback-status">{{ entry_chargeback_status }}</label>
             <div class="col-sm-10">
-              <select name="payssion_chargeback_status_id" id="input-chargeback-status" class="form-control">
+              <select name="payment_payssion_chargeback_status_id" id="input-chargeback-status" class="form-control">
                 {% for order_status in order_statuses %}
                 {% if order_status['order_status_id'] == payssion_chargeback_status_id %}
                 <option value="{{ order_status['order_status_id'] }}" selected="selected">{{ order_status['name'] }}</option>
@@ -147,10 +147,10 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-geo-zone">{{ entry_geo_zone }}</label>
             <div class="col-sm-10">
-              <select name="payssion_geo_zone_id" id="input-geo-zone" class="form-control">
+              <select name="payment_payssion_geo_zone_id" id="input-geo-zone" class="form-control">
                 <option value="0">{{ text_all_zones }}</option>
                 {% for geo_zone in geo_zones %}
-                {% if geo_zone['geo_zone_id'] == payssion_geo_zone_id %}
+                {% if geo_zone['geo_zone_id'] == payment_payssion_geo_zone_id %}
                 <option value="{{ geo_zone['geo_zone_id'] }}" selected="selected">{{ geo_zone['name'] }}</option>
                 {% else %}
                 <option value="{{ geo_zone['geo_zone_id'] }}">{{ geo_zone['name'] }}</option>
@@ -162,8 +162,8 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
             <div class="col-sm-10">
-              <select name="payssion_status" id="input-status" class="form-control">
-                {% if payssion_status %}
+              <select name="payment_payssion_status" id="input-status" class="form-control">
+                {% if payment_payssion_status %}
                 <option value="1" selected="selected">{{ text_enabled }}</option>
                 <option value="0">{{ text_disabled }}</option>
                 {% else %}
@@ -176,7 +176,7 @@
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-sort-order">{{ entry_sort_order }}</label>
             <div class="col-sm-10">
-              <input type="text" name="payssion_sort_order" value="{{ payssion_sort_order }}" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control" />
+              <input type="text" name="payment_payssion_sort_order" value="{{ payment_payssion_sort_order }}" placeholder="{{ entry_sort_order }}" id="input-sort-order" class="form-control" />
             </div>
           </div>
         </form>

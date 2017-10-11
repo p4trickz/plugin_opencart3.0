@@ -17,8 +17,8 @@ class ModelExtensionPaymentPayssion extends Model {
 			$title = ($title && $title != $key ? $title : $pm) . ' (Payssion)';
 		}
 		
-		if ($channel && $this->config->get($id . '_status')) {
-			$geo_zone_id = $id . '_geo_zone_id';
+		if ($channel && $this->config->get('payment_' . $id . '_status')) {
+			$geo_zone_id = 'payment_' . $id . '_geo_zone_id';
 			$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "zone_to_geo_zone WHERE geo_zone_id = '" . (int)$this->config->get($geo_zone_id) . "' AND country_id = '" . (int)$address['country_id'] . "' AND (zone_id = '" . (int)$address['zone_id'] . "' OR zone_id = '0')");
 			if (!$this->config->get($geo_zone_id)) {
 				$status = TRUE;
@@ -37,7 +37,7 @@ class ModelExtensionPaymentPayssion extends Model {
 				'code'		 => $id,
 				'title'		 => $title,
 				'terms'      => '',
-				'sort_order' => $this->config->get($id . '_sort_order')
+				'sort_order' => $this->config->get('payment_' . $id . '_sort_order')
 			);
 		}
 		return $method_data;

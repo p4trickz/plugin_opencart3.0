@@ -77,22 +77,22 @@ class ControllerExtensionPaymentPayssion extends Controller {
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], 'SSL')
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $this->language->get('text_extension'),
-			'href' => $this->url->link('extension/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', 'SSL')
+			'href' => $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', true)
 		);
 
 		$data['breadcrumbs'][] = array(
 			'text' => $title,
-			'href' => $this->url->link('extension/payment/' . $id, 'user_token=' . $this->session->data['user_token'], 'SSL')
+			'href' => $this->url->link('extension/payment/' . $id, 'user_token=' . $this->session->data['user_token'], true)
 		);
 
 		$data['action'] = $this->url->link('extension/payment/' . $id, 'user_token=' . $this->session->data['user_token'], 'SSL');
 
-		$data['cancel'] = $this->url->link('extension/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', 'SSL');
+		$data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', true);
 
 		if (isset($this->request->post['payment_payssion_apikey'])) {
 			$data['payment_payssion_apikey'] = $this->request->post['payment_payssion_apikey'];

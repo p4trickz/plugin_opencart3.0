@@ -5,6 +5,7 @@ class ControllerExtensionPaymentPayssion extends Controller {
 		$data['button_confirm'] = $this->language->get('button_confirm');
 
 		$this->load->model('checkout/order');
+		$this->load->model('localisation/currency');
 
 		$order_info = $this->model_checkout_order->getOrder($this->session->data['order_id']);
 
@@ -18,8 +19,22 @@ class ControllerExtensionPaymentPayssion extends Controller {
 		$data['pm_id'] = $this->pm_id;
 		$data['api_key'] = $this->config->get('payment_payssion_apikey');
 		$data['track_id'] = $order_info['order_id'];
-		$data['amount'] = $this->currency->format($order_info['total'], $order_info['currency_code'], $order_info['currency_value'], false);
-		$data['currency'] = $order_info['currency_code'];
+
+		$orderCurrencyCode = $order_info['currency_code'];
+		$orderCurrencyValue = $order_info['currency_value'];
+		if ($this->config->get('payment_payssion_use_usd_to_submit')) {
+			$currencies = $this->model_localisation_currency->getCurrencies();
+			if (isset($currencies['USD'])) {
+				$usdCurrency = $currencies['USD'];
+				$orderCurrencyCode = $usdCurrency['code'];
+				$orderCurrencyValue = $usdCurrency['value'];
+			} else {
+				$this->log->write('USD currency was not found or it\'s disabled');
+			}
+		}
+
+		$data['amount'] = $this->currency->format($order_info['total'], $orderCurrencyCode, $orderCurrencyValue, false);
+		$data['currency'] = $orderCurrencyCode;
 		$data['description'] = $this->config->get('config_name') . ' - #' . $order_info['order_id'];
 		$data['payer_name'] = $order_info['payment_firstname'] . ' ' . $order_info['payment_lastname'];
 

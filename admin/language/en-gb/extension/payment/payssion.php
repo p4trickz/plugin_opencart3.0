@@ -25,6 +25,10 @@ $_['entry_chargeback_status']       = 'Chargeback Status';
 $_['entry_geo_zone']				= 'Geo Zone';
 $_['entry_status']					= 'Status';
 $_['entry_sort_order']				= 'Sort Order';
+$_['entry_use_usd_to_submit']		= 'Use USD to submit order';
+
+// Help
+$_['help_use_usd_to_submit']		= 'Using USD instead of default currency when submit orders into payment gateway.';
 
 // Error
 $_['error_permission']				= 'Warning: You do not have permission to modify payment Payssion!';

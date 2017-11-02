@@ -50,6 +50,8 @@ class ControllerExtensionPaymentPayssion extends Controller {
 		$data['entry_geo_zone'] = $this->language->get('entry_geo_zone');
 		$data['entry_status'] = $this->language->get('entry_status');
 		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
+		$data['entry_use_usd_to_submit'] = $this->language->get('entry_use_usd_to_submit');
+		$data['help_use_usd_to_submit'] = $this->language->get('help_use_usd_to_submit');
 
 
 		$data['button_save'] = $this->language->get('button_save');
@@ -181,6 +183,13 @@ class ControllerExtensionPaymentPayssion extends Controller {
 			$data[$pm_sortorder] = $this->request->post[$pm_sortorder];
 		} else {
 			$data[$pm_sortorder] = $this->config->get($pm_sortorder);
+		}
+
+		$pm_use_usd_to_submit = 'payment_' . $id . '_use_usd_to_submit';
+		if (isset($this->request->post[$pm_use_usd_to_submit])) {
+			$data[$pm_use_usd_to_submit] = $this->request->post[$pm_use_usd_to_submit];
+		} else {
+			$data[$pm_use_usd_to_submit] = $this->config->get($pm_use_usd_to_submit);
 		}
 
 		$data['header'] = $this->load->controller('common/header');
